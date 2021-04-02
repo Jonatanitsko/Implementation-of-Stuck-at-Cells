@@ -73,7 +73,7 @@ def decode(H, y, n, k):
 def initialization():
     # getting parity check matrix
     p_c_m = []
-    with open('pcm.csv') as p_c_m_file:
+    with open('Parity checking matrix.csv') as p_c_m_file:
         p_c_m_Reader = csv.reader(p_c_m_file)
         for row in p_c_m_Reader:
             int_row = list(map(int, row))
@@ -87,13 +87,13 @@ def initialization():
     # getting minimum hamming distance
     mhd = hamdist(p_c_m)
 
-    # CHECK: that we dont have more than d-1 stuck-at cells.
-
     # getting information vector, index locations, stuck at values
 
+    m=[]
     i_v = []  # index locations & stuck at values of those locations
-    with open('input.csv') as inputfile:
+    with open('Encoding input file.csv') as inputfile:
         inputReader = csv.reader(inputfile)
+        m = list(map(int, next(inputReader)))
         i_v.append(list(map(int, list(filter(None, next(inputReader))))))
         i_v.append(list(map(int, list(filter(None, next(inputReader))))))
 
@@ -105,16 +105,11 @@ def initialization():
                 if y_vec==[]:
                     print('To decode a code word, you need to enter a message first.')
                 else:
-                    num = int(input('Enter the number of the message to decode:'))
-                    code_word = y_vec[num-1]
+                    code_word = y_vec[len(y_vec)-1]
                     m = decode(p_c_m, code_word, n, k)
                     print("The message that was received is: ",m)
 
             elif decode_encode == 'e':
-                print('Insert Message to encode (the length must be '+ str(k) +'): ')
-                m=input() #The message
-                m = list(m)
-                m= [int(i) for i in m]
                 print('Encoding the following message: ', m)
                 y = encode(p_c_m, r, n, m, i_v, k)
                 y_vec.append(y)
