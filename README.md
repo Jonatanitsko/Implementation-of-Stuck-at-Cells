@@ -10,4 +10,4 @@ Attach the desired parity checking matrix in an excel file format, with the name
 Attach the indices of the stuck cells and the message in the file named "Encoding input file"(also an excel file).
 Run the python file, and input messages in the following format:
 To start enter "e" to encode a message to the memory.
-To receive a message that was saved to the memory, enter the decoder by passing "d" to the input line and then enter the number of the message you would  like to retrieve.
+To receive a message that was saved to the memory, enter the decoder by passing "d" to the input line.
